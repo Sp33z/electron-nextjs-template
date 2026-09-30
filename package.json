@@ -1,0 +1,69 @@
+{
+  "name": "Electron - NextJS Template",
+  "version": "0.1.0",
+  "description": "Minimal Electron + Next.js + React + Tailwind app.",
+  "author": "Sp33z",
+  "main": "main.js",
+  "type": "module",
+  "scripts": {
+    "dev": "concurrently -k \"next dev\" \"electron . --dev\"",
+    "build": "next build",
+    "start": "next build && electron .",
+    "dist": "next build && electron-builder",
+    "dist:win": "next build && electron-builder --win --x64",
+    "dist:mac": "next build && electron-builder --mac",
+    "dist:linux": "next build && electron-builder --linux"
+  },
+  "dependencies": {
+    "electron-serve": "^1.3.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "concurrently": "^9",
+    "electron": "^44.4.5",
+    "electron-builder": "^26.15.3",
+    "next": "^16.3.7",
+    "react": "19.2.8",
+    "react-dom": "19.2.8",
+    "tailwindcss": "^4",
+    "typescript": "^5"
+  },
+  "build": {
+    "appId": "com.example.myapp",
+    "productName": "My App",
+    "files": [
+      "main.js",
+      "out/**/*"
+    ],
+    "artifactName": "${productName}-Setup-${version}-${os}-${arch}.${ext}",
+    "win": {
+      "target": "nsis"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "My App"
+    },
+    "mac": {
+      "target": [
+        "dmg",
+        "pkg"
+      ],
+      "category": "public.app-category.utilities"
+    },
+    "linux": {
+      "target": [
+        "AppImage",
+        "deb",
+        "rpm"
+      ],
+      "category": "Utility"
+    }
+  }
+}
